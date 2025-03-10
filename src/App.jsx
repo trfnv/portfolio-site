@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 const Header = ({ reset }) => (
   <header
-    className="fixed top-0 w-full flex justify-center bg-white cursor-pointer"
+    className="fixed top-0 w-full h-[64px] flex justify-center bg-white cursor-pointer"
     onClick={reset}
   >
-    <div className="w-[390px] h-[64px] px-4 flex justify-between items-center">
+    <div className="w-[390px] h-full px-4 flex justify-between items-center">
       <span className="text-black">pavel trufanov</span>
       <span className="text-black">motion designer portfolio</span>
     </div>
@@ -69,7 +69,7 @@ export default function App() {
   return (
     <div className="flex flex-col items-center w-full h-screen bg-white px-4">
       <Header reset={reset} />
-      <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px] overflow-auto border border-red-500">
+      <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px] overflow-auto">
         <About expanded={expanded} expand={expand} />
         <Carousel expanded={expanded} reset={reset} />
         <Categories expanded={expanded} />
