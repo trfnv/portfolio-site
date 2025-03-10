@@ -69,7 +69,7 @@ export default function App() {
   return (
     <div className="flex flex-col items-center w-full h-screen bg-white px-4">
       <Header reset={reset} />
-      <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px] overflow-auto">
+      <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px] overflow-auto border border-red-500">
         <About expanded={expanded} expand={expand} />
         <Carousel expanded={expanded} reset={reset} />
         <Categories expanded={expanded} />
