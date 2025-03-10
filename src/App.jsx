@@ -63,13 +63,13 @@ const Categories = ({ expanded }) => (
 export default function App() {
   const [expanded, setExpanded] = useState(false);
 
-  const expand = () => setExpanded(true); // Разворачивает About
-  const reset = () => setExpanded(false); // Сворачивает всё обратно
+  const expand = () => setExpanded(true);
+  const reset = () => setExpanded(false);
 
   return (
     <div className="flex flex-col items-center w-full h-screen bg-white px-4">
       <Header reset={reset} />
-      <main className="mt-[64px] mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2">
+      <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px]">
         <About expanded={expanded} expand={expand} />
         <Carousel expanded={expanded} reset={reset} />
         <Categories expanded={expanded} />
