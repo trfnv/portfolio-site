@@ -39,7 +39,7 @@ const Carousel = ({ expanded, reset }) => (
     transition={{ duration: 0.6, ease: "easeInOut" }}
   >
     <VideoCarousel
-      videos={["media/video/1.webm", "media/video/2.webm", "media/video/3.webm"]}
+      videos={["/media/video/1.webm", "/media/video/2.webm", "/media/video/3.webm"]}
       isExpanded={expanded}
     />
   </motion.div>

@@ -1,0 +1,11 @@
+{
+    "headers": [
+      {
+        "source": "/media/video/(.*)",
+        "headers": [
+          { "key": "Content-Type", "value": "video/webm" }
+        ]
+      }
+    ]
+  }
+  
