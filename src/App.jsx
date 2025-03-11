@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import VideoCarousel from "./components/VideoCarousel";
 
@@ -19,8 +19,8 @@ const About = ({ expanded, expand }) => (
     className="w-full border border-black rounded-[13px] px-4 py-1 text-left cursor-pointer flex"
     onClick={expand}
     animate={{
-      flexGrow: expanded ? 1 : 0, // Заполняет всё доступное место
-      height: expanded ? "auto" : 32, // Сворачивается в 32px
+      flexGrow: expanded ? 1 : 0,
+      height: expanded ? "auto" : 32,
     }}
     transition={{ duration: 0.6, ease: "easeInOut" }}
     style={{ overflow: "hidden" }}
@@ -29,19 +29,16 @@ const About = ({ expanded, expand }) => (
   </motion.div>
 );
 
-const Carousel = ({ expanded, reset }) => (
+const Carousel = ({ expanded, reset, videos }) => (
   <motion.div
     className="w-full border border-black rounded-[13px] text-left cursor-pointer overflow-hidden"
     onClick={reset}
     animate={{
-      height: expanded ? 128 : 256, // Высота изменяется
+      height: expanded ? 128 : 256,
     }}
     transition={{ duration: 0.6, ease: "easeInOut" }}
   >
-    <VideoCarousel
-      videos={["/media/video/1.webm", "/media/video/2.webm", "/media/video/3.webm"]}
-      isExpanded={expanded}
-    />
+    <VideoCarousel videos={videos} isExpanded={expanded} />
   </motion.div>
 );
 
@@ -49,8 +46,8 @@ const Categories = ({ expanded }) => (
   <motion.div
     className="w-full border border-black rounded-[13px] px-4 py-1 text-left flex"
     animate={{
-      flexGrow: expanded ? 0 : 1, // Плавное заполнение освобождающегося пространства
-      opacity: expanded ? 0 : 1, // Плавное появление
+      flexGrow: expanded ? 0 : 1,
+      opacity: expanded ? 0 : 1,
     }}
     transition={{
       duration: 0.6,
@@ -66,16 +63,24 @@ const Categories = ({ expanded }) => (
 
 export default function App() {
   const [expanded, setExpanded] = useState(false);
+  const [videos, setVideos] = useState([]);
 
   const expand = () => setExpanded(true);
   const reset = () => setExpanded(false);
+
+  useEffect(() => {
+    fetch("/portfolio.json") // Загружаем JSON
+      .then((response) => response.json())
+      .then((data) => setVideos(data))
+      .catch((error) => console.error("Ошибка загрузки JSON:", error));
+  }, []);
 
   return (
     <div className="flex flex-col items-center w-full h-screen bg-white px-4">
       <Header reset={reset} />
       <main className="mb-[16px] flex flex-col w-full max-w-[390px] h-full gap-2 pt-[64px] overflow-auto">
         <About expanded={expanded} expand={expand} />
-        <Carousel expanded={expanded} reset={reset} />
+        <Carousel expanded={expanded} reset={reset} videos={videos} />
         <Categories expanded={expanded} />
       </main>
     </div>
