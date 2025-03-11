@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import VideoCarousel from "./components/VideoCarousel";
 
 const Header = ({ reset }) => (
   <header
@@ -30,14 +31,17 @@ const About = ({ expanded, expand }) => (
 
 const Carousel = ({ expanded, reset }) => (
   <motion.div
-    className="w-full border border-black rounded-[13px] px-4 py-1 text-left cursor-pointer"
+    className="w-full border border-black rounded-[13px] text-left cursor-pointer overflow-hidden"
     onClick={reset}
     animate={{
-      height: expanded ? 128 : 256, // Фиксированная высота
+      height: expanded ? 128 : 256, // Высота изменяется
     }}
     transition={{ duration: 0.6, ease: "easeInOut" }}
   >
-    Carousel
+    <VideoCarousel
+      videos={["media/video/1.webm", "media/video/2.webm", "media/video/3.webm"]}
+      isExpanded={expanded}
+    />
   </motion.div>
 );
 
